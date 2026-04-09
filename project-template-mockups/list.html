@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Templates — List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/mockups.css" />
+  </head>
+  <body class="pt-mock--with-sidebar">
+    <div class="app-shell">
+      <aside class="sidebar-placeholder" aria-hidden="true">
+        <span>Nav placeholder · 240px</span>
+      </aside>
+      <div class="main-area">
+        <div class="main-inner">
+          <header class="top-bar">
+            <h1 class="page-title">Project Templates</h1>
+            <a class="btn btn--primary" href="#modal-create">+ Create New Template</a>
+          </header>
+
+          <div class="filter-bar">
+            <div class="search-field">
+              <label class="label" for="search">Search</label>
+              <div class="input-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+                <input id="search" class="input" type="search" placeholder="Search templates..." />
+              </div>
+            </div>
+            <div class="filter-group filter-group--wide">
+              <label class="label" for="org">Organization</label>
+              <select id="org" class="select" aria-label="Organization filter">
+                <option>All organizations</option>
+                <option>Acme Logistics</option>
+                <option>Global Freight Co</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="label" for="status">Status</label>
+              <select id="status" class="select">
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>All</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="label" for="draft">Draft</label>
+              <select id="draft" class="select">
+                <option>All</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="toggle-inline">
+              <input id="global-only" type="checkbox" />
+              <label for="global-only">Show only global templates</label>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="sortable">Project Template Name</th>
+                  <th class="sortable">Organizations</th>
+                  <th class="sortable">Incoterm</th>
+                  <th class="sortable">Freight Mode</th>
+                  <th class="sortable">Shipping Service</th>
+                  <th class="sortable">Country of Origin</th>
+                  <th class="sortable">Created By</th>
+                  <th style="text-align: right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="link-cell" href="detail.html">Standard FCL Import - China</a>
+                  </td>
+                  <td>
+                    <div class="chip-list">
+                      <span class="chip">Acme Logistics</span>
+                      <span class="chip">EuroShip GmbH</span>
+                      <span class="chip">FastHaul Inc</span>
+                    </div>
+                  </td>
+                  <td>FOB</td>
+                  <td>FCL</td>
+                  <td>P2P</td>
+                  <td>🇨🇳 China</td>
+                  <td>
+                    <div class="user-cell">
+                      <span class="avatar" aria-hidden="true">SC</span>
+                      <span>Sarah Chen</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="row-actions">
+                      <a class="btn btn--icon btn--icon-sm" href="detail.html" title="Edit" aria-label="Edit">✎</a>
+                      <button type="button" class="btn btn--icon btn--icon-sm" title="Clone" aria-label="Clone">⎘</button>
+                      <a class="btn btn--icon btn--icon-sm" href="#modal-deactivate" title="Deactivate" aria-label="Deactivate">⌫</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="link-cell" href="detail.html">LCL CFS Stuffing - Direct</a>
+                  </td>
+                  <td>
+                    <div class="chip-list"><span class="chip">Global Freight Co</span></div>
+                  </td>
+                  <td>CIF</td>
+                  <td>LCL</td>
+                  <td>D2D</td>
+                  <td>🇮🇳 India</td>
+                  <td>
+                    <div class="user-cell">
+                      <span class="avatar">RP</span>
+                      <span>Raj Patel</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="row-actions">
+                      <a class="btn btn--icon btn--icon-sm" href="detail.html" title="Edit">✎</a>
+                      <button type="button" class="btn btn--icon btn--icon-sm" title="Clone">⎘</button>
+                      <a class="btn btn--icon btn--icon-sm" href="#modal-deactivate" title="Deactivate">⌫</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="link-cell" href="detail.html">Air Express - EU</a>
+                  </td>
+                  <td>
+                    <div class="chip-list"><span class="chip">EuroShip GmbH</span></div>
+                  </td>
+                  <td>EXW</td>
+                  <td>Air</td>
+                  <td>P2D</td>
+                  <td>🇩🇪 Germany</td>
+                  <td>
+                    <div class="user-cell">
+                      <span class="avatar">HM</span>
+                      <span>Hans Mueller</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="row-actions">
+                      <a class="btn btn--icon btn--icon-sm" href="detail.html" title="Edit">✎</a>
+                      <button type="button" class="btn btn--icon btn--icon-sm" title="Clone">⎘</button>
+                      <a class="btn btn--icon btn--icon-sm" href="#modal-deactivate" title="Deactivate">⌫</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="link-cell" href="detail.html">Truck Domestic - US</a>
+                  </td>
+                  <td>
+                    <div class="chip-list"><span class="chip">FastHaul Inc</span></div>
+                  </td>
+                  <td>DDP</td>
+                  <td>Truck</td>
+                  <td>D2D</td>
+                  <td>🇺🇸 USA</td>
+                  <td>
+                    <div class="user-cell">
+                      <span class="avatar">MJ</span>
+                      <span>Mike Johnson</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="row-actions">
+                      <a class="btn btn--icon btn--icon-sm" href="detail.html" title="Edit">✎</a>
+                      <button type="button" class="btn btn--icon btn--icon-sm" title="Clone">⎘</button>
+                      <a class="btn btn--icon btn--icon-sm" href="#modal-deactivate" title="Deactivate">⌫</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <span>Showing 1–4 of 4 templates</span>
+              <div class="pagination__controls">
+                <button type="button" class="btn btn--ghost" disabled>Previous</button>
+                <button type="button" class="btn btn--ghost" disabled>Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 1a: Create modal -->
+    <div id="modal-create" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="create-title">
+      <div class="modal">
+        <div class="modal__header">
+          <h2 id="create-title">Create New Project Template</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <form class="form-stack" action="#" onsubmit="return false;">
+            <div>
+              <label class="label required" for="pt-name">Project Template Name</label>
+              <input id="pt-name" class="input" type="text" placeholder="e.g. Standard FCL Import - China" />
+            </div>
+            <div>
+              <label class="label" for="pt-incoterm">Incoterm</label>
+              <select id="pt-incoterm" class="select">
+                <option value="">Select incoterm</option>
+                <option>FOB</option>
+                <option>CIF</option>
+                <option>EXW</option>
+                <option>DDP</option>
+                <option>DAP</option>
+                <option>FCA</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="pt-mode">Freight Mode</label>
+              <select id="pt-mode" class="select">
+                <option value="">Select mode</option>
+                <option>FCL</option>
+                <option>LCL</option>
+                <option>Air</option>
+                <option>Truck</option>
+                <option>Rail</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="pt-coverage">Shipping Service Coverage</label>
+              <select id="pt-coverage" class="select">
+                <option value="">Select coverage</option>
+                <option>P2P</option>
+                <option>D2D</option>
+                <option>P2D</option>
+                <option>D2P</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="pt-country">Country of Origin</label>
+              <select id="pt-country" class="select">
+                <option value="">Search countries…</option>
+                <option>🇨🇳 China</option>
+                <option>🇮🇳 India</option>
+                <option>🇩🇪 Germany</option>
+                <option>🇺🇸 USA</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="pt-orgs">Organizations</label>
+              <select id="pt-orgs" class="select" multiple size="3" aria-label="Organizations multi-select">
+                <option>Acme Logistics</option>
+                <option>Global Freight Co</option>
+                <option>EuroShip GmbH</option>
+              </select>
+              <p style="margin: 6px 0 0; font-size: 12px; color: var(--text-muted)">
+                Mock: native multi-select; product would use a styled multi-select.
+              </p>
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--primary">Create Template</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation: deactivate -->
+    <div id="modal-deactivate" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="deact-title">
+      <div class="modal">
+        <div class="modal__header">
+          <h2 id="deact-title">Deactivate template?</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px">
+            Are you sure you want to deactivate this template? Active projects using it may be affected.
+          </p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--danger-ghost">Deactivate</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mock-nav" aria-label="Mockup pages">
+      <strong>Mockups</strong>
+      <a href="index.html">Index</a>
+      <span>·</span>
+      <a href="list.html">List</a>
+      <span>·</span>
+      <a href="detail.html">Detail</a>
+      <span>·</span>
+      <a href="states.html">States</a>
+    </nav>
+  </body>
+</html>

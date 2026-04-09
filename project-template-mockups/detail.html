@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Standard FCL Import - China — Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/mockups.css" />
+  </head>
+  <body class="pt-mock--with-sidebar">
+    <div class="app-shell stage-accent-colors">
+      <aside class="sidebar-placeholder" aria-hidden="true">
+        <span>Nav placeholder · 240px</span>
+      </aside>
+      <div class="main-area">
+        <div class="main-inner">
+          <header class="top-bar top-bar--detail">
+            <div>
+              <div class="breadcrumb">
+                <a href="list.html">← Project Templates</a>
+                <span aria-hidden="true">/</span>
+                <strong>Standard FCL Import - China</strong>
+              </div>
+              <p style="margin: 8px 0 0; display: flex; align-items: center; gap: 10px">
+                <span class="badge badge--success">Active</span>
+                <span style="font-size: 13px; color: var(--text-muted)">Last saved Mar 20, 2025 · 14:32</span>
+              </p>
+            </div>
+            <div class="top-bar__actions">
+              <button type="button" class="btn btn--primary" disabled title="Enabled when there are unsaved edits">
+                Save Changes
+              </button>
+              <a class="btn btn--danger-ghost" href="#modal-deactivate-template">Deactivate</a>
+            </div>
+          </header>
+
+          <details class="panel-disclosure" open>
+            <summary>Template details</summary>
+            <div class="panel-disclosure__body">
+              <div class="meta-grid">
+                <div>
+                  <label class="label" for="d-name">Project Template Name</label>
+                  <input id="d-name" class="input" type="text" value="Standard FCL Import - China" />
+                </div>
+                <div>
+                  <label class="label" for="d-incoterm">Incoterm</label>
+                  <select id="d-incoterm" class="select">
+                    <option selected>FOB</option>
+                    <option>CIF</option>
+                    <option>EXW</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label" for="d-mode">Freight Mode</label>
+                  <select id="d-mode" class="select">
+                    <option selected>FCL</option>
+                    <option>LCL</option>
+                    <option>Air</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label" for="d-country">Country of Origin</label>
+                  <select id="d-country" class="select">
+                    <option selected>🇨🇳 China</option>
+                    <option>🇮🇳 India</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label" for="d-coverage">Shipping Service Coverage</label>
+                  <select id="d-coverage" class="select">
+                    <option selected>P2P</option>
+                    <option>D2D</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label" for="d-orgs">Organizations</label>
+                  <select id="d-orgs" class="select" multiple size="2">
+                    <option selected>Acme Logistics</option>
+                    <option selected>EuroShip GmbH</option>
+                    <option>FastHaul Inc</option>
+                  </select>
+                </div>
+                <div style="grid-column: 1 / -1">
+                  <span class="label">Created By</span>
+                  <div class="static-field">
+                    <div class="user-cell">
+                      <span class="avatar">SC</span>
+                      <div>
+                        <div>Sarah Chen</div>
+                        <div style="font-size: 12px; color: var(--text-muted)">Mar 12, 2025</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <section class="stages-section" aria-labelledby="stages-heading">
+            <div class="stages-section__head">
+              <h2 class="section-title" id="stages-heading">
+                Stage Templates
+                <span class="count-badge">5</span>
+              </h2>
+              <a class="btn btn--primary" href="#modal-add-stage">+ Add Stage Template</a>
+            </div>
+
+            <!-- Stage: Production -->
+            <details class="stage-block" open style="--stage-color: var(--s0)">
+              <summary>
+                <span class="chev" aria-hidden="true"></span>
+                <span class="stage-title">Production <span class="stage-meta">· 1 milestone · 2 tasks</span></span>
+                <span class="stage-actions">
+                  <span class="drag-handle" title="Reorder (handle only)" aria-hidden="true">⋮⋮</span>
+                  <a class="btn btn--icon btn--icon-sm" href="#modal-remove-stage" title="Remove stage" aria-label="Remove">×</a>
+                </span>
+              </summary>
+              <div class="stage-block__inner">
+                <details class="milestone-block" open>
+                  <summary>
+                    <span class="chev-sm"></span>
+                    Cargo Ready Date
+                    <span class="milestone-count">2 task types</span>
+                  </summary>
+                  <div class="milestone-block__tasks">
+                    <div class="task-row">
+                      <div class="task-row__main">
+                        <div class="task-row__name">Confirm Cargo Ready Date</div>
+                        <div class="task-row__meta">
+                          <span><strong>Assignee</strong> Shipper</span>
+                          <span><strong>Follower</strong> Ops</span>
+                          <span><strong>Duration</strong> 2 days</span>
+                        </div>
+                        <div class="task-row__trigger">
+                          On <strong>milestone_created</strong> · if <strong>stage = production</strong> · then
+                          <strong>set_due_date</strong> · offset <strong>−3 days</strong>
+                        </div>
+                      </div>
+                      <div class="task-row__actions">
+                        <a class="btn btn--icon btn--icon-sm" href="#drawer-edit-task" title="Edit">✎</a>
+                        <a class="btn btn--icon btn--icon-sm" href="#modal-remove-task" title="Remove">×</a>
+                      </div>
+                    </div>
+                    <div class="task-row">
+                      <div class="task-row__main">
+                        <div class="task-row__name">Book Vessel Slot</div>
+                        <div class="task-row__meta">
+                          <span><strong>Assignee</strong> Freight Forwarder</span>
+                          <span><strong>Follower</strong> —</span>
+                          <span><strong>Duration</strong> 1 day</span>
+                        </div>
+                        <div class="task-row__trigger">
+                          On <strong>task_completed</strong> · if <strong>task = confirm_cargo_ready</strong> · then
+                          <strong>set_due_date</strong> · offset <strong>+1 day</strong>
+                        </div>
+                      </div>
+                      <div class="task-row__actions">
+                        <a class="btn btn--icon btn--icon-sm" href="#drawer-edit-task" title="Edit">✎</a>
+                        <a class="btn btn--icon btn--icon-sm" href="#modal-remove-task" title="Remove">×</a>
+                      </div>
+                    </div>
+                    <div class="add-inline"><a href="#drawer-edit-task">+ Add Task Type</a></div>
+                  </div>
+                </details>
+                <div class="add-inline"><a href="#">+ Add Milestone Type</a></div>
+              </div>
+            </details>
+
+            <!-- Stage: Origin -->
+            <details class="stage-block" style="--stage-color: var(--s1)">
+              <summary>
+                <span class="chev"></span>
+                <span class="stage-title">Origin <span class="stage-meta">· 1 milestone · 1 task</span></span>
+                <span class="stage-actions">
+                  <span class="drag-handle" aria-hidden="true">⋮⋮</span>
+                  <a class="btn btn--icon btn--icon-sm" href="#modal-remove-stage" aria-label="Remove">×</a>
+                </span>
+              </summary>
+              <div class="stage-block__inner">
+                <details class="milestone-block" open>
+                  <summary>
+                    <span class="chev-sm"></span>
+                    Vessel Departure
+                    <span class="milestone-count">1 task type</span>
+                  </summary>
+                  <div class="milestone-block__tasks">
+                    <div class="task-row">
+                      <div class="task-row__main">
+                        <div class="task-row__name">Submit Shipping Instructions</div>
+                        <div class="task-row__meta">
+                          <span><strong>Assignee</strong> Shipper</span>
+                          <span><strong>Follower</strong> Forwarder</span>
+                          <span><strong>Duration</strong> 4 hours</span>
+                        </div>
+                        <div class="task-row__trigger">
+                          On <strong>milestone_reached</strong> · if <strong>milestone = cargo_ready</strong> · then
+                          <strong>notify</strong> · offset <strong>+0 days</strong>
+                        </div>
+                      </div>
+                      <div class="task-row__actions">
+                        <a class="btn btn--icon btn--icon-sm" href="#drawer-edit-task">✎</a>
+                        <a class="btn btn--icon btn--icon-sm" href="#modal-remove-task">×</a>
+                      </div>
+                    </div>
+                    <div class="add-inline"><a href="#drawer-edit-task">+ Add Task Type</a></div>
+                  </div>
+                </details>
+                <div class="add-inline"><a href="#">+ Add Milestone Type</a></div>
+              </div>
+            </details>
+
+            <!-- Stage: Transit (collapsed sample) -->
+            <details class="stage-block" style="--stage-color: var(--s2)">
+              <summary>
+                <span class="chev"></span>
+                <span class="stage-title">Transit <span class="stage-meta">· 1 milestone · 1 task</span></span>
+                <span class="stage-actions">
+                  <span class="drag-handle" aria-hidden="true">⋮⋮</span>
+                  <a class="btn btn--icon btn--icon-sm" href="#modal-remove-stage" aria-label="Remove">×</a>
+                </span>
+              </summary>
+              <div class="stage-block__inner">
+                <details class="milestone-block">
+                  <summary>
+                    <span class="chev-sm"></span>
+                    Vessel Arrival
+                    <span class="milestone-count">1 task type</span>
+                  </summary>
+                  <div class="milestone-block__tasks">
+                    <div class="task-row">
+                      <div class="task-row__main">
+                        <div class="task-row__name">Submit Customs Declaration</div>
+                        <div class="task-row__meta">
+                          <span><strong>Assignee</strong> Customs Broker</span>
+                          <span><strong>Follower</strong> Ops</span>
+                          <span><strong>Duration</strong> 3 days</span>
+                        </div>
+                        <div class="task-row__trigger">
+                          On <strong>milestone_reached</strong> · if <strong>milestone = vessel_arrival</strong> · then
+                          <strong>set_due_date</strong> · offset <strong>+0 days</strong>
+                        </div>
+                      </div>
+                      <div class="task-row__actions">
+                        <a class="btn btn--icon btn--icon-sm" href="#drawer-edit-task">✎</a>
+                        <a class="btn btn--icon btn--icon-sm" href="#modal-remove-task">×</a>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </details>
+
+            <!-- Stage: Destination -->
+            <details class="stage-block" style="--stage-color: var(--s3)">
+              <summary>
+                <span class="chev"></span>
+                <span class="stage-title">Destination <span class="stage-meta">· 1 milestone · 0 tasks</span></span>
+                <span class="stage-actions">
+                  <span class="drag-handle" aria-hidden="true">⋮⋮</span>
+                  <a class="btn btn--icon btn--icon-sm" href="#modal-remove-stage" aria-label="Remove">×</a>
+                </span>
+              </summary>
+              <div class="stage-block__inner">
+                <details class="milestone-block" open>
+                  <summary>
+                    <span class="chev-sm"></span>
+                    Delivery Confirmation
+                    <span class="milestone-count">0 task types</span>
+                  </summary>
+                  <div class="milestone-block__tasks">
+                    <p style="margin: 0; padding: 12px; font-size: 13px; color: var(--text-muted)">
+                      No task types in this milestone yet.
+                    </p>
+                    <div class="add-inline"><a href="#drawer-edit-task">+ Add Task Type</a></div>
+                  </div>
+                </details>
+              </div>
+            </details>
+
+            <!-- Stage: Customer Invoicing -->
+            <details class="stage-block" style="--stage-color: var(--s4)">
+              <summary>
+                <span class="chev"></span>
+                <span class="stage-title">Customer Invoicing <span class="stage-meta">· 0 milestones</span></span>
+                <span class="stage-actions">
+                  <span class="drag-handle" aria-hidden="true">⋮⋮</span>
+                  <a class="btn btn--icon btn--icon-sm" href="#modal-remove-stage" aria-label="Remove">×</a>
+                </span>
+              </summary>
+              <div class="stage-block__inner">
+                <p style="margin: 0 0 12px; font-size: 13px; color: var(--text-muted)">
+                  No milestone types yet. Add a milestone to begin.
+                </p>
+                <div class="add-inline"><a href="#">+ Add Milestone Type</a></div>
+              </div>
+            </details>
+          </section>
+
+          <p style="margin-top: 32px; font-size: 13px; color: var(--text-muted)">
+            Demo: <a href="#modal-unsaved">Preview “unsaved changes” dialog</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2a: Add stage from library -->
+    <div id="modal-add-stage" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="add-stage-title">
+      <div class="modal modal--wide">
+        <div class="modal__header">
+          <h2 id="add-stage-title">Add Stage Template</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <label class="label" for="stage-search">Search library</label>
+          <div class="input-wrap" style="margin-bottom: 16px">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.3-4.3" />
+            </svg>
+            <input id="stage-search" class="input" type="search" placeholder="Search stage templates…" />
+          </div>
+          <div class="picker-list">
+            <label class="picker-item">
+              <input type="checkbox" name="stage" checked />
+              <div class="picker-item__body">
+                <div class="picker-item__title">Customs Clearance</div>
+                <div class="picker-item__meta">3 milestone types · 12 task types</div>
+              </div>
+            </label>
+            <label class="picker-item">
+              <input type="checkbox" name="stage" />
+              <div class="picker-item__body">
+                <div class="picker-item__title">Warehouse Handling</div>
+                <div class="picker-item__meta">2 milestone types · 6 task types</div>
+              </div>
+            </label>
+            <label class="picker-item">
+              <input type="checkbox" name="stage" />
+              <div class="picker-item__body">
+                <div class="picker-item__title">Last Mile Delivery</div>
+                <div class="picker-item__meta">4 milestone types · 9 task types</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--primary">Add Selected (1)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2b: Edit task drawer -->
+    <div id="drawer-edit-task" class="drawer-overlay">
+      <a href="#" class="drawer-backdrop" aria-label="Close drawer"></a>
+      <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-task-title">
+        <div class="drawer__header">
+          <h2 id="drawer-task-title">Edit Task Type</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="drawer__body">
+          <form class="form-stack" action="#" onsubmit="return false;">
+            <div>
+              <label class="label" for="t-name">Task Type Name</label>
+              <input id="t-name" class="input" type="text" value="Confirm Cargo Ready Date" />
+            </div>
+            <div>
+              <label class="label" for="t-assignee">Assignee Type</label>
+              <select id="t-assignee" class="select">
+                <option selected>Shipper</option>
+                <option>Freight Forwarder</option>
+                <option>Customs Broker</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="t-follower">Follower Type</label>
+              <select id="t-follower" class="select">
+                <option selected>Ops</option>
+                <option>None</option>
+              </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 120px; gap: 12px">
+              <div>
+                <label class="label" for="t-dur">Duration</label>
+                <input id="t-dur" class="input" type="number" value="2" />
+              </div>
+              <div>
+                <label class="label" for="t-dur-unit">Unit</label>
+                <select id="t-dur-unit" class="select">
+                  <option selected>days</option>
+                  <option>hours</option>
+                  <option>weeks</option>
+                </select>
+              </div>
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 8px 0" />
+            <p style="margin: 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted)">
+              Trigger configuration
+            </p>
+            <div>
+              <label class="label" for="t-event">Event Type</label>
+              <select id="t-event" class="select">
+                <option selected>milestone_created</option>
+                <option>task_completed</option>
+                <option>milestone_reached</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="t-cond-key">Condition Key</label>
+              <select id="t-cond-key" class="select">
+                <option selected>stage</option>
+                <option>task</option>
+                <option>milestone</option>
+              </select>
+            </div>
+            <div>
+              <label class="label" for="t-cond-val">Condition Value</label>
+              <input id="t-cond-val" class="input" type="text" value="production" />
+            </div>
+            <div>
+              <label class="label" for="t-op">Consequence → Operation</label>
+              <select id="t-op" class="select">
+                <option selected>set_due_date</option>
+                <option>notify</option>
+                <option>assign</option>
+              </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 140px; gap: 12px">
+              <div>
+                <label class="label" for="t-off">Date offset</label>
+                <input id="t-off" class="input" type="number" value="-3" />
+              </div>
+              <div>
+                <label class="label" for="t-off-unit">Unit</label>
+                <select id="t-off-unit" class="select">
+                  <option selected>days</option>
+                  <option>weeks</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="drawer__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-deactivate-template" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h2>Deactivate template?</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px">
+            Are you sure you want to deactivate <strong>Standard FCL Import - China</strong>?
+          </p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--danger-ghost">Deactivate</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-remove-stage" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h2>Remove stage template?</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px">
+            This removes the stage and its milestones and task types from this project template only.
+          </p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--danger-ghost">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-remove-task" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h2>Remove task type?</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px">This action cannot be undone.</p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--danger-ghost">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-unsaved" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h2>Unsaved changes</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px">
+            You have unsaved changes. Leave without saving?
+          </p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Stay</a>
+          <a href="list.html" class="btn btn--danger-ghost">Discard changes</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-toasts" aria-hidden="true">
+      <div class="toast toast--success">Template saved</div>
+      <div class="toast toast--error">Failed to save</div>
+      <div class="toast toast--warn">You have unsaved changes</div>
+    </div>
+
+    <nav class="mock-nav" aria-label="Mockup pages">
+      <strong>Mockups</strong>
+      <a href="index.html">Index</a>
+      <span>·</span>
+      <a href="list.html">List</a>
+      <span>·</span>
+      <a href="detail.html">Detail</a>
+      <span>·</span>
+      <a href="states.html">States</a>
+    </nav>
+  </body>
+</html>

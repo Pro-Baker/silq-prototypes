@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Templates — Empty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/mockups.css" />
+  </head>
+  <body class="pt-mock--with-sidebar">
+    <div class="app-shell">
+      <aside class="sidebar-placeholder" aria-hidden="true">
+        <span>Nav placeholder · 240px</span>
+      </aside>
+      <div class="main-area">
+        <div class="main-inner">
+          <header class="top-bar">
+            <h1 class="page-title">Project Templates</h1>
+            <a class="btn btn--primary" href="#modal-create">+ Create New Template</a>
+          </header>
+
+          <div class="filter-bar">
+            <div class="search-field">
+              <label class="label" for="search">Search</label>
+              <div class="input-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+                <input id="search" class="input" type="search" placeholder="Search templates..." />
+              </div>
+            </div>
+            <div class="filter-group filter-group--wide">
+              <label class="label" for="org">Organization</label>
+              <select id="org" class="select">
+                <option>All organizations</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="label" for="status">Status</label>
+              <select id="status" class="select">
+                <option>All</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <div class="empty-state">
+              <div class="empty-state__art" aria-hidden="true"></div>
+              <p><strong style="color: var(--text)">No templates found.</strong> Create your first template to get started.</p>
+              <p style="margin-top: 20px">
+                <a class="btn btn--primary" href="#modal-create">+ Create New Template</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-create" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="create-title">
+      <div class="modal">
+        <div class="modal__header">
+          <h2 id="create-title">Create New Project Template</h2>
+          <a href="#" class="modal__close" aria-label="Close">&times;</a>
+        </div>
+        <div class="modal__body">
+          <form class="form-stack">
+            <div>
+              <label class="label required" for="pt-name">Project Template Name</label>
+              <input id="pt-name" class="input input--error" type="text" value="" aria-invalid="true" />
+              <p class="field-error">This field is required.</p>
+            </div>
+            <div>
+              <label class="label" for="pt-incoterm">Incoterm</label>
+              <select id="pt-incoterm" class="select">
+                <option value="">Select incoterm</option>
+                <option>FOB</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--text">Cancel</a>
+          <button type="button" class="btn btn--primary">Create Template</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mock-nav" aria-label="Mockup pages">
+      <strong>Mockups</strong>
+      <a href="index.html">Index</a>
+      <span>·</span>
+      <a href="list.html">List</a>
+      <span>·</span>
+      <a href="detail.html">Detail</a>
+      <span>·</span>
+      <a href="states.html">States</a>
+    </nav>
+  </body>
+</html>

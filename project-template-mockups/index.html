@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Template Mockups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/mockups.css" />
+    <style>
+      .hub {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 48px 24px 120px;
+      }
+      .hub h1 {
+        font-size: 28px;
+        margin: 0 0 8px;
+      }
+      .hub p {
+        color: var(--text-muted);
+        margin: 0 0 28px;
+      }
+      .hub ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .hub li {
+        margin-bottom: 12px;
+      }
+      .hub a.tile {
+        display: block;
+        padding: 16px 20px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .hub a.tile:hover {
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+      .hub a.tile small {
+        display: block;
+        margin-top: 6px;
+        font-weight: 400;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body style="background: var(--page-bg)">
+    <div class="hub">
+      <h1>Project Template Management</h1>
+      <p>Static HTML/CSS mockups · desktop ~1440px · open files locally in a browser.</p>
+      <ul>
+        <li>
+          <a class="tile" href="list.html">
+            Screen 1 — Table view
+            <small>Filters, sortable table, pagination, row actions. Open “Create” for Screen 1a modal.</small>
+          </a>
+        </li>
+        <li>
+          <a class="tile" href="list-empty.html">
+            Screen 1 — Empty state
+            <small>No templates found illustration and CTA path.</small>
+          </a>
+        </li>
+        <li>
+          <a class="tile" href="detail.html">
+            Screen 2 — Detail / edit
+            <small>Metadata panel, stage → milestone → task tree, add-stage modal, edit-task drawer, confirmations.</small>
+          </a>
+        </li>
+        <li>
+          <a class="tile" href="states.html">
+            Component states
+            <small>Buttons, inputs, badges, table row, toast samples for handoff.</small>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Component states — PT mockups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/mockups.css" />
+    <style>
+      .states-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 24px 100px;
+      }
+      .states-page h1 {
+        font-size: 24px;
+        margin: 0 0 8px;
+      }
+      .states-page > p {
+        color: var(--text-muted);
+        margin: 0 0 32px;
+      }
+      .states-section {
+        margin-bottom: 40px;
+      }
+      .states-section h2 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin: 0 0 16px;
+      }
+    </style>
+  </head>
+  <body style="background: var(--page-bg)">
+    <div class="states-page">
+      <h1>PT / Component states (static)</h1>
+      <p>Labels describe intent for design/dev handoff. Hover states work for buttons where applicable.</p>
+
+      <section class="states-section" aria-labelledby="s-buttons">
+        <h2 id="s-buttons">Buttons</h2>
+        <div class="states-grid">
+          <div class="state-card">
+            <h4>Primary · default</h4>
+            <button type="button" class="btn btn--primary">Save Changes</button>
+          </div>
+          <div class="state-card">
+            <h4>Primary · disabled</h4>
+            <button type="button" class="btn btn--primary" disabled>Save Changes</button>
+          </div>
+          <div class="state-card">
+            <h4>Ghost</h4>
+            <button type="button" class="btn btn--ghost">Cancel</button>
+          </div>
+          <div class="state-card">
+            <h4>Text</h4>
+            <button type="button" class="btn btn--text">Cancel</button>
+          </div>
+          <div class="state-card">
+            <h4>Danger outline</h4>
+            <button type="button" class="btn btn--danger-ghost">Deactivate</button>
+          </div>
+          <div class="state-card">
+            <h4>Icon</h4>
+            <button type="button" class="btn btn--icon btn--icon-sm" aria-label="Edit">✎</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-inputs">
+        <h2 id="s-inputs">Text inputs</h2>
+        <div class="states-grid">
+          <div class="state-card">
+            <h4>Empty + placeholder</h4>
+            <label class="label" for="in1">Name</label>
+            <input id="in1" class="input" type="text" placeholder="Search templates…" />
+          </div>
+          <div class="state-card">
+            <h4>Filled</h4>
+            <label class="label" for="in2">Name</label>
+            <input id="in2" class="input" type="text" value="Standard FCL Import - China" />
+          </div>
+          <div class="state-card">
+            <h4>Error</h4>
+            <label class="label" for="in3">Name</label>
+            <input id="in3" class="input input--error" type="text" value="" aria-invalid="true" />
+            <p class="field-error">This field is required.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-dropdown">
+        <h2 id="s-dropdown">Select</h2>
+        <div class="states-grid">
+          <div class="state-card">
+            <h4>Closed (native)</h4>
+            <label class="label" for="sel1">Incoterm</label>
+            <select id="sel1" class="select">
+              <option>FOB</option>
+              <option>CIF</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-badges">
+        <h2 id="s-badges">Badges</h2>
+        <div class="states-grid">
+          <div class="state-card">
+            <h4>Status</h4>
+            <span class="badge badge--success">Active</span>
+            <span class="badge badge--warning" style="margin-left: 8px">Draft</span>
+            <span class="badge badge--neutral" style="margin-left: 8px">Inactive</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-table">
+        <h2 id="s-table">Table row</h2>
+        <div class="table-wrap" style="max-width: 100%">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Mode</th>
+                <th style="text-align: right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a class="link-cell" href="detail.html">Default row</a></td>
+                <td>FCL</td>
+                <td style="text-align: right"><button type="button" class="btn btn--icon btn--icon-sm">✎</button></td>
+              </tr>
+              <tr class="selected">
+                <td><span class="link-cell" style="cursor: default">Selected row</span></td>
+                <td>LCL</td>
+                <td style="text-align: right"><button type="button" class="btn btn--icon btn--icon-sm">✎</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px">Second row uses .selected · hover first row to see hover fill.</p>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-toast">
+        <h2 id="s-toast">Toasts</h2>
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 360px">
+          <div class="toast toast--success">Template saved</div>
+          <div class="toast toast--error">Failed to save</div>
+          <div class="toast toast--warn">You have unsaved changes</div>
+        </div>
+      </section>
+
+      <section class="states-section" aria-labelledby="s-tokens">
+        <h2 id="s-tokens">Tokens (reference)</h2>
+        <div class="card">
+          <div class="card__body">
+            <pre style="margin: 0; font-size: 12px; overflow: auto; color: var(--text-muted)">
+--page-bg: #f5f6f8
+--surface: #ffffff
+--border: #e5e7eb
+--text: #111827
+--text-muted: #6b7280
+--brand: #0d9488
+--danger: #dc2626
+--success: #16a34a
+--warning: #ca8a04
+            </pre>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <nav class="mock-nav" aria-label="Mockup pages">
+      <strong>Mockups</strong>
+      <a href="index.html">Index</a>
+      <span>·</span>
+      <a href="list.html">List</a>
+      <span>·</span>
+      <a href="detail.html">Detail</a>
+      <span>·</span>
+      <a href="states.html">States</a>
+    </nav>
+  </body>
+</html>
