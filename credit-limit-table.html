@@ -292,6 +292,163 @@
     margin-top: 2px;
   }
 
+  /* Admin summary cards */
+  .admin-summary-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 18px 28px;
+  }
+
+  .admin-summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .admin-summary-card .card-title {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .admin-summary-card .card-subtitle {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+
+  .admin-pie-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .admin-pie-wrapper {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .admin-pie-wrapper canvas { width: 90px; height: 90px; }
+
+  .admin-pie-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .admin-pie-center .pie-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .admin-pie-center .pie-sub {
+    font-size: 9px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .admin-pie-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .admin-pie-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+
+  .admin-pie-legend-item .legend-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .admin-pie-legend-item .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .admin-pie-legend-item .legend-label { color: var(--text-secondary); }
+  .admin-pie-legend-item .legend-count { font-weight: 700; color: var(--text); }
+
+  .exposure-progress-wrap { margin-top: 2px; }
+
+  .exposure-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+
+  .exposure-progress-header .exp-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .exposure-progress-header .exp-of {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .exposure-progress-track {
+    height: 10px;
+    background: var(--border-light);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .exposure-progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+  }
+
+  .exposure-progress-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .ar-value-display {
+    margin-top: 2px;
+  }
+
+  .ar-value-display .ar-amount {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .ar-value-display .ar-detail {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
   /* Toolbar */
   .toolbar {
     padding: 0 28px 14px;
@@ -1189,34 +1346,37 @@
         <div class="client-avatar-lg">GF</div>
         <div class="client-meta">
           <h2>Global Freight Solutions Inc.</h2>
-          <p>CLT-1001 &middot; Account Manager: Sarah Kim &middot; Net 30</p>
+          <p>CLT-1001 &middot; Account Manager: Sarah Kim &middot; 30 Days</p>
         </div>
       </div>
       <span class="badge badge-green"><span class="badge-dot"></span>Within Limit</span>
     </div>
   </div>
 
-  <!-- Summary Cards -->
-  <div class="summary-bar" id="summaryBar" style="grid-template-columns:repeat(4,1fr)">
-    <div class="summary-card">
-      <div class="label">Total Clients</div>
-      <div class="value" style="color:#1a56db">8</div>
-      <div class="detail">with assigned credit limits</div>
+  <!-- Admin Summary Cards -->
+  <div class="admin-summary-bar" id="summaryBar">
+    <div class="admin-summary-card">
+      <div class="card-title">Clients by Status</div>
+      <div class="admin-pie-row">
+        <div class="admin-pie-wrapper">
+          <canvas id="adminPieChart" width="90" height="90"></canvas>
+          <div class="admin-pie-center">
+            <div class="pie-num" id="adminPieTotal">7</div>
+            <div class="pie-sub">clients</div>
+          </div>
+        </div>
+        <div class="admin-pie-legend" id="adminPieLegend"></div>
+      </div>
+      <div class="card-subtitle">Excludes DOR clients</div>
     </div>
-    <div class="summary-card">
-      <div class="label">Total Exposure</div>
-      <div class="value" style="color:#d97706">$2,194,850</div>
-      <div class="detail">56.6% utilization</div>
+    <div class="admin-summary-card">
+      <div class="card-title">Credit Exposure vs. Limit</div>
+      <div class="exposure-progress-wrap" id="exposureProgressCard"></div>
+      <div class="card-subtitle">Clients with assigned credit limits only</div>
     </div>
-    <div class="summary-card">
-      <div class="label">Over Limit</div>
-      <div class="value" style="color:#dc2626">1</div>
-      <div class="detail">requires immediate attention</div>
-    </div>
-    <div class="summary-card">
-      <div class="label">Revision Requests</div>
-      <div class="value" style="color:#ea580c">2</div>
-      <div class="detail">pending Finance review</div>
+    <div class="admin-summary-card">
+      <div class="card-title">Total A/R Receivable</div>
+      <div class="ar-value-display" id="arCard"></div>
     </div>
   </div>
 
@@ -1368,26 +1528,26 @@
         </div>
         <div class="form-group">
           <label>Credit Limit Amount (USD) <span class="req">*</span></label>
-          <input type="text" placeholder="e.g. 500,000">
+          <input type="text" id="addLimitAmount" placeholder="e.g. 500,000">
         </div>
         <div class="form-group">
           <label>General Credit Terms <span class="req">*</span></label>
-          <select><option>Select...</option><option>Net 15</option><option>Net 30</option><option>Net 45</option><option>Net 60</option><option>Net 90</option><option>COD</option><option>Prepaid</option></select>
+          <select id="addCreditTerms" onchange="handleTermsChange(this)"><option>Select...</option><option>DOR</option><option>7 Days</option><option>10 Days</option><option>15 Days</option><option>30 Days</option><option>45 Days</option><option>60 Days</option></select>
         </div>
         <div class="form-group">
           <label>Credit Limit Type <span class="req">*</span></label>
-          <select><option>Revolving</option><option>Non-Revolving</option><option>Temporary Increase</option></select>
+          <select><option>Revolving</option></select>
         </div>
         <div class="form-group">
-          <label>Duties Outlay Option <span class="req">*</span></label>
-          <select><option>Select...</option><option>Pre-pay</option><option>Silq Duty Outlay</option><option>ACH</option><option>N/A</option></select>
+          <label>Duties Outlay Option</label>
+          <select><option>Select...</option><option>Silq Duty</option><option>Pre-Pay</option><option>ACH</option><option>Not Applicable</option></select>
         </div>
         <div class="form-group full-width">
           <label>Credit Limit Application (upload) <span class="req">*</span></label>
           <input type="file" accept=".pdf,.doc,.docx,.xlsx" multiple>
         </div>
         <div class="form-group full-width">
-          <label>Credit Limit Allocation Document (upload)</label>
+          <label>Credit Limit Allocation Document (upload) <span class="req">*</span></label>
           <input type="file" accept=".pdf,.doc,.docx,.xlsx" multiple>
         </div>
         <div class="form-group full-width">
@@ -1425,8 +1585,8 @@
           <input type="text" placeholder="Enter revised limit">
         </div>
         <div class="form-group">
-          <label>New Credit Terms <span class="req">*</span></label>
-          <select><option>Select...</option><option>Net 15</option><option>Net 30</option><option>Net 45</option><option>Net 60</option><option>Net 90</option><option>COD</option><option>Prepaid</option></select>
+          <label>Credit Terms <span class="req">*</span></label>
+          <select><option>Select...</option><option>DOR</option><option>7 Days</option><option>10 Days</option><option>15 Days</option><option>30 Days</option><option>45 Days</option><option>60 Days</option></select>
         </div>
         <div class="form-group full-width">
           <label>Revision Reason <span class="req">*</span></label>
@@ -1447,7 +1607,7 @@
           <input type="file" accept=".pdf,.doc,.docx,.xlsx" multiple>
         </div>
         <div class="form-group full-width">
-          <label>Justification Notes <span class="req">*</span></label>
+          <label>Justification Notes</label>
           <textarea placeholder="Explain the reason for this revision..."></textarea>
         </div>
       </div>
@@ -1565,9 +1725,9 @@ let currentView = "admin";
 const DATA = [
   {
     id: "CLT-1001", name: "Global Freight Solutions Inc.", am: "Sarah Kim", amColor: "#6366f1",
-    terms: "Net 30", assignedLimit: 750000,
+    terms: "30 Days", assignedLimit: 750000,
     outstandingInvoices: 482000, customerCreditNotes: 18000, unadjustedAdvances: 12000, customerDebitNotes: 3500,
-    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty Outlay", revisionRequested: false,
+    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty", revisionRequested: false,
     currentBookings: 87500, currentBookingsCount: 4,
     ageing: { current: { amt: 185000, count: 5 }, d1_30: { amt: 142000, count: 4 }, d31_60: { amt: 88000, count: 3 }, d61_90: { amt: 45000, count: 2 }, d90plus: { amt: 22000, count: 1 } },
     docs: [{ name: "CL Application", type: "pdf" }, { name: "CL Allocation", type: "pdf" }, { name: "Bank Reference", type: "pdf" }],
@@ -1578,9 +1738,9 @@ const DATA = [
   },
   {
     id: "CLT-1002", name: "Pacific Cargo Lines", am: "James Chen", amColor: "#0891b2",
-    terms: "Net 45", assignedLimit: 500000,
+    terms: "45 Days", assignedLimit: 500000,
     outstandingInvoices: 378000, customerCreditNotes: 5000, unadjustedAdvances: 8000, customerDebitNotes: 2000,
-    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Pre-pay", revisionRequested: true,
+    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Pre-Pay", revisionRequested: true,
     currentBookings: 62000, currentBookingsCount: 3,
     ageing: { current: { amt: 120000, count: 3 }, d1_30: { amt: 135000, count: 4 }, d31_60: { amt: 78000, count: 2 }, d61_90: { amt: 30000, count: 1 }, d90plus: { amt: 15000, count: 1 } },
     revisionRequestDetail: "Requesting limit increase to $750,000 — business volume has grown 40% this quarter.",
@@ -1589,7 +1749,7 @@ const DATA = [
   },
   {
     id: "CLT-1003", name: "TransAtlantic Logistics Ltd", am: "Maria Lopez", amColor: "#db2777",
-    terms: "Net 30", assignedLimit: 300000,
+    terms: "30 Days", assignedLimit: 300000,
     outstandingInvoices: 315000, customerCreditNotes: 2000, unadjustedAdvances: 0, customerDebitNotes: 5000,
     limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "ACH", revisionRequested: false,
     currentBookings: 45000, currentBookingsCount: 2,
@@ -1602,9 +1762,9 @@ const DATA = [
   },
   {
     id: "CLT-1004", name: "Horizon Shipping Co.", am: "Sarah Kim", amColor: "#6366f1",
-    terms: "Net 60", assignedLimit: 1000000,
+    terms: "60 Days", assignedLimit: 1000000,
     outstandingInvoices: 410000, customerCreditNotes: 25000, unadjustedAdvances: 50000, customerDebitNotes: 8000,
-    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty Outlay", revisionRequested: false,
+    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty", revisionRequested: false,
     currentBookings: 125000, currentBookingsCount: 5,
     ageing: { current: { amt: 160000, count: 4 }, d1_30: { amt: 120000, count: 3 }, d31_60: { amt: 75000, count: 2 }, d61_90: { amt: 35000, count: 2 }, d90plus: { amt: 20000, count: 1 } },
     docs: [{ name: "CL Application", type: "pdf" }, { name: "CL Allocation", type: "pdf" }, { name: "Trade References", type: "pdf" }, { name: "Financials 2024", type: "xlsx" }],
@@ -1615,9 +1775,9 @@ const DATA = [
   },
   {
     id: "CLT-1005", name: "Eagle Express Freight", am: "James Chen", amColor: "#0891b2",
-    terms: "Net 15", assignedLimit: 200000,
+    terms: "15 Days", assignedLimit: 200000,
     outstandingInvoices: 125000, customerCreditNotes: 3000, unadjustedAdvances: 2000, customerDebitNotes: 1500,
-    limitType: "Non-Revolving", approvalStatus: "Approved", dutyOutlay: "Pre-pay", revisionRequested: false,
+    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Pre-Pay", revisionRequested: false,
     currentBookings: 18000, currentBookingsCount: 1,
     ageing: { current: { amt: 55000, count: 2 }, d1_30: { amt: 40000, count: 2 }, d31_60: { amt: 20000, count: 1 }, d61_90: { amt: 10000, count: 1 }, d90plus: { amt: 0, count: 0 } },
     docs: [{ name: "CL Application", type: "pdf" }, { name: "CL Allocation", type: "pdf" }],
@@ -1625,7 +1785,7 @@ const DATA = [
   },
   {
     id: "CLT-1006", name: "Nordic Supply Chain AB", am: "Maria Lopez", amColor: "#db2777",
-    terms: "Net 30", assignedLimit: 450000,
+    terms: "30 Days", assignedLimit: 450000,
     outstandingInvoices: 198000, customerCreditNotes: 10000, unadjustedAdvances: 15000, customerDebitNotes: 4000,
     limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "ACH", revisionRequested: false,
     currentBookings: 32000, currentBookingsCount: 2,
@@ -1635,9 +1795,9 @@ const DATA = [
   },
   {
     id: "CLT-1007", name: "Silk Road Logistics", am: "James Chen", amColor: "#0891b2",
-    terms: "COD", assignedLimit: 75000,
+    terms: "DOR", assignedLimit: 0,
     outstandingInvoices: 42000, customerCreditNotes: 0, unadjustedAdvances: 5000, customerDebitNotes: 500,
-    limitType: "Temporary Increase", approvalStatus: "Under Review", dutyOutlay: "N/A", revisionRequested: false,
+    limitType: "Revolving", approvalStatus: "Under Review", dutyOutlay: "Not Applicable", revisionRequested: false,
     currentBookings: 8500, currentBookingsCount: 1,
     ageing: { current: { amt: 22000, count: 2 }, d1_30: { amt: 12000, count: 1 }, d31_60: { amt: 8000, count: 1 }, d61_90: { amt: 0, count: 0 }, d90plus: { amt: 0, count: 0 } },
     docs: [{ name: "CL Application", type: "pdf" }],
@@ -1645,9 +1805,9 @@ const DATA = [
   },
   {
     id: "CLT-1008", name: "Summit Intermodal Partners", am: "Sarah Kim", amColor: "#6366f1",
-    terms: "Net 45", assignedLimit: 600000,
+    terms: "45 Days", assignedLimit: 600000,
     outstandingInvoices: 290000, customerCreditNotes: 8000, unadjustedAdvances: 20000, customerDebitNotes: 3000,
-    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty Outlay", revisionRequested: true,
+    limitType: "Revolving", approvalStatus: "Approved", dutyOutlay: "Silq Duty", revisionRequested: true,
     currentBookings: 55000, currentBookingsCount: 3,
     ageing: { current: { amt: 105000, count: 3 }, d1_30: { amt: 90000, count: 3 }, d31_60: { amt: 55000, count: 2 }, d61_90: { amt: 25000, count: 1 }, d90plus: { amt: 15000, count: 1 } },
     revisionRequestDetail: "Current exposure nearing limit — requesting temporary increase for Q2 peak season.",
@@ -1662,10 +1822,13 @@ function computeExposure(c) {
 
 function computeAvailable(c) { return c.assignedLimit - computeExposure(c); }
 
+function isDOR(c) { return c.terms === "DOR"; }
+
 function getStatus(c) {
+  if (isDOR(c)) return "dor";
   const avail = computeAvailable(c);
   if (avail < 0) return "over";
-  if (avail < c.assignedLimit * 0.10) return "near";
+  if (avail < c.assignedLimit * 0.20) return "near";
   return "within";
 }
 
@@ -1674,7 +1837,8 @@ function statusBadge(s) {
     within: { cls: "badge-green", label: "Within Limit" },
     near: { cls: "badge-yellow", label: "Near Limit" },
     over: { cls: "badge-red", label: "Over Limit" },
-    expired: { cls: "badge-gray", label: "Expired" }
+    expired: { cls: "badge-gray", label: "Expired" },
+    dor: { cls: "badge-gray", label: "N/A" }
   };
   const m = map[s];
   return `<span class="badge ${m.cls}"><span class="badge-dot"></span>${m.label}</span>`;
@@ -1694,9 +1858,9 @@ function progressColor(p) {
 }
 
 function dutyBadgeClass(d) {
-  if (d === "Silq Duty Outlay") return "badge-green";
+  if (d === "Silq Duty") return "badge-green";
   if (d === "ACH") return "badge-yellow";
-  if (d === "Pre-pay") return "badge-orange";
+  if (d === "Pre-Pay") return "badge-orange";
   return "badge-gray";
 }
 
@@ -1723,11 +1887,30 @@ function renderTable(data) {
   const tbody = document.getElementById("tableBody");
 
   tbody.innerHTML = data.map(c => {
+    const dor = isDOR(c);
     const exposure = computeExposure(c);
     const available = computeAvailable(c);
     const status = getStatus(c);
-    const util = pct(exposure, c.assignedLimit);
+    const util = dor ? 0 : pct(exposure, c.assignedLimit);
     const hasRevisionRequest = c.revisionRequested;
+
+    const limitCell = dor
+      ? `<td><div class="money" style="color:var(--text-secondary)">N/A</div></td>`
+      : `<td>
+          <div>
+            <div class="money">${fmt(c.assignedLimit)}</div>
+            <div class="progress-bar-container" style="margin-top:5px">
+              <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(util,100)}%;background:${progressColor(util)}"></div></div>
+              <div class="progress-label">${util}% used</div>
+            </div>
+          </div>
+        </td>`;
+
+    const exposureCell = `<td class="money ${!dor && exposure > c.assignedLimit ? 'negative' : ''}">${fmt(exposure)}</td>`;
+
+    const availableCell = dor
+      ? `<td><span class="money" style="color:var(--text-secondary)">N/A</span></td>`
+      : `<td class="money ${available < 0 ? 'negative' : 'positive'}">${fmt(available)}</td>`;
 
     return `<tr data-status="${status}" data-id="${c.id}" class="${hasRevisionRequest ? 'revision-request-row' : ''}">
       <td>
@@ -1743,17 +1926,9 @@ function renderTable(data) {
         </div>
       </td>
       <td><div class="credit-terms" title="${c.terms}">${c.terms}</div></td>
-      <td>
-        <div>
-          <div class="money">${fmt(c.assignedLimit)}</div>
-          <div class="progress-bar-container" style="margin-top:5px">
-            <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(util,100)}%;background:${progressColor(util)}"></div></div>
-            <div class="progress-label">${util}% used</div>
-          </div>
-        </div>
-      </td>
-      <td class="money ${exposure > c.assignedLimit ? 'negative' : ''}">${fmt(exposure)}</td>
-      <td class="money ${available < 0 ? 'negative' : 'positive'}">${fmt(available)}</td>
+      ${limitCell}
+      ${exposureCell}
+      ${availableCell}
       <td>${statusBadge(status)}</td>
       <td><span class="badge ${dutyBadgeClass(c.dutyOutlay)}">${c.dutyOutlay}</span></td>
       <td>
@@ -1892,6 +2067,7 @@ function switchView(view) {
     tableWrapper.classList.remove("hidden");
     clientDash.classList.remove("visible");
     renderTable(DATA);
+    renderAdminSummary();
   }
 }
 
@@ -1906,11 +2082,16 @@ function openDetail(id) {
   document.getElementById("detailClientName").textContent = c.name;
   document.getElementById("detailClientId").textContent = `${c.id} · ${c.am} · ${c.approvalStatus}`;
 
-  document.getElementById("detailPosition").innerHTML = `
-    <div class="detail-row"><span class="label">Assigned Limit</span><span class="value">${fmt(c.assignedLimit)}</span></div>
-    <div class="detail-row"><span class="label">Current Exposure</span><span class="value" style="color:${exposure > c.assignedLimit ? 'var(--red)' : 'var(--text)'}">${fmt(exposure)}</span></div>
-    <div class="detail-row"><span class="label">Available Credit</span><span class="value" style="color:${available < 0 ? 'var(--red)' : 'var(--green)'}">${fmt(available)}</span></div>
-    <div class="detail-row"><span class="label">Utilization</span><span class="value">${util}% ${statusBadge(status)}</span></div>`;
+  const dor = isDOR(c);
+  document.getElementById("detailPosition").innerHTML = dor
+    ? `<div class="detail-row"><span class="label">Assigned Limit</span><span class="value" style="color:var(--text-secondary)">N/A (DOR)</span></div>
+       <div class="detail-row"><span class="label">Current Exposure</span><span class="value">${fmt(exposure)}</span></div>
+       <div class="detail-row"><span class="label">Available Credit</span><span class="value" style="color:var(--text-secondary)">N/A</span></div>
+       <div class="detail-row"><span class="label">Status</span><span class="value">${statusBadge(status)}</span></div>`
+    : `<div class="detail-row"><span class="label">Assigned Limit</span><span class="value">${fmt(c.assignedLimit)}</span></div>
+       <div class="detail-row"><span class="label">Current Exposure</span><span class="value" style="color:${exposure > c.assignedLimit ? 'var(--red)' : 'var(--text)'}">${fmt(exposure)}</span></div>
+       <div class="detail-row"><span class="label">Available Credit</span><span class="value" style="color:${available < 0 ? 'var(--red)' : 'var(--green)'}">${fmt(available)}</span></div>
+       <div class="detail-row"><span class="label">Utilization</span><span class="value">${util}% ${statusBadge(status)}</span></div>`;
 
   const ageingHTML = c.ageing ? `
     <div class="ageing-inline">
@@ -1965,8 +2146,36 @@ function closeDetail() {
   document.getElementById("detailPanel").classList.remove("open");
 }
 
-function openModal() { document.getElementById("modal").classList.add("open"); }
+function openModal() {
+  document.getElementById("modal").classList.add("open");
+  const termsSelect = document.getElementById("addCreditTerms");
+  const amountInput = document.getElementById("addLimitAmount");
+  termsSelect.value = "Select...";
+  amountInput.value = "";
+  amountInput.disabled = false;
+  amountInput.style.background = "";
+  amountInput.placeholder = "e.g. 500,000";
+}
 function closeModal() { document.getElementById("modal").classList.remove("open"); }
+
+function handleTermsChange(select) {
+  const amountInput = document.getElementById("addLimitAmount");
+  if (select.value === "DOR") {
+    amountInput.value = "0";
+    amountInput.disabled = true;
+    amountInput.style.background = "var(--gray-bg)";
+    amountInput.style.color = "var(--text-secondary)";
+    amountInput.placeholder = "";
+  } else {
+    if (amountInput.disabled) {
+      amountInput.value = "";
+      amountInput.disabled = false;
+      amountInput.style.background = "";
+      amountInput.style.color = "";
+      amountInput.placeholder = "e.g. 500,000";
+    }
+  }
+}
 
 function openRevise(id) {
   const c = DATA.find(x => x.id === id);
@@ -2057,7 +2266,98 @@ function navigateToInvoices() {
   }, 3000);
 }
 
+function drawAdminPie(counts) {
+  const canvas = document.getElementById("adminPieChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = 90 * dpr;
+  canvas.height = 90 * dpr;
+  ctx.scale(dpr, dpr);
+
+  const cx = 45, cy = 45, r = 34, lineWidth = 14;
+  const total = counts.within + counts.near + counts.over;
+  if (total === 0) return;
+
+  const slices = [
+    { count: counts.within, color: "#3d9a5f" },
+    { count: counts.near, color: "#c8842e" },
+    { count: counts.over, color: "#c44b3f" }
+  ];
+
+  ctx.clearRect(0, 0, 90, 90);
+
+  let startAngle = -Math.PI / 2;
+  slices.forEach(s => {
+    if (s.count === 0) return;
+    const sweep = (s.count / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, startAngle, startAngle + sweep);
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = "butt";
+    ctx.stroke();
+    startAngle += sweep;
+  });
+
+  document.getElementById("adminPieTotal").textContent = total;
+}
+
+function renderAdminSummary() {
+  const creditClients = DATA.filter(c => !isDOR(c));
+  const allClients = DATA;
+
+  const counts = { within: 0, near: 0, over: 0 };
+  creditClients.forEach(c => {
+    const s = getStatus(c);
+    if (counts[s] !== undefined) counts[s]++;
+  });
+
+  drawAdminPie(counts);
+
+  document.getElementById("adminPieLegend").innerHTML = `
+    <div class="admin-pie-legend-item">
+      <span class="legend-left"><span class="legend-dot" style="background:#3d9a5f"></span><span class="legend-label">Within Limit</span></span>
+      <span class="legend-count">${counts.within}</span>
+    </div>
+    <div class="admin-pie-legend-item">
+      <span class="legend-left"><span class="legend-dot" style="background:#c8842e"></span><span class="legend-label">Near Limit</span></span>
+      <span class="legend-count">${counts.near}</span>
+    </div>
+    <div class="admin-pie-legend-item">
+      <span class="legend-left"><span class="legend-dot" style="background:#c44b3f"></span><span class="legend-label">Over Limit</span></span>
+      <span class="legend-count">${counts.over}</span>
+    </div>`;
+
+  const totalExposure = creditClients.reduce((sum, c) => sum + computeExposure(c), 0);
+  const totalLimit = creditClients.reduce((sum, c) => sum + c.assignedLimit, 0);
+  const utilPct = totalLimit > 0 ? Math.round((totalExposure / totalLimit) * 100) : 0;
+  const barColor = utilPct >= 90 ? "var(--red)" : utilPct >= 70 ? "var(--yellow)" : "var(--green)";
+
+  document.getElementById("exposureProgressCard").innerHTML = `
+    <div class="exposure-progress-header">
+      <span class="exp-value">${fmt(totalExposure)}</span>
+      <span class="exp-of">of ${fmt(totalLimit)}</span>
+    </div>
+    <div class="exposure-progress-track">
+      <div class="exposure-progress-fill" style="width:${Math.min(utilPct, 100)}%;background:${barColor}"></div>
+    </div>
+    <div class="exposure-progress-footer">
+      <span>${utilPct}% utilized</span>
+      <span>${fmt(totalLimit - totalExposure)} available</span>
+    </div>`;
+
+  const totalAR = allClients.reduce((sum, c) => sum + c.outstandingInvoices, 0);
+  const dorCount = allClients.filter(c => isDOR(c)).length;
+  const clCount = creditClients.length;
+
+  document.getElementById("arCard").innerHTML = `
+    <div class="ar-amount">${fmt(totalAR)}</div>
+    <div class="ar-detail">${allClients.length} clients (${clCount} with credit limits, ${dorCount} DOR) &middot; as of today</div>`;
+}
+
 renderTable(DATA);
+renderAdminSummary();
 </script>
 </body>
 </html>
