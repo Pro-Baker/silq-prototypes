@@ -664,9 +664,64 @@
     font-weight: 600;
   }
 
+  /* Ops milestone tracker on cards */
+  .ops-tracker {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin: 6px 0 2px;
+    padding: 5px 0 2px;
+    border-top: 1px dashed var(--border-light);
+  }
+
+  .ops-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    flex-shrink: 0;
+    position: relative;
+    cursor: default;
+  }
+
+  .ops-dot.done { background: var(--green-bg); color: var(--green); border: 1.5px solid var(--green); }
+  .ops-dot.in-progress { background: var(--yellow-bg); color: var(--yellow); border: 1.5px solid var(--yellow); animation: pulse 2s infinite; }
+  .ops-dot.pending { background: var(--gray-bg); color: var(--border); border: 1.5px solid var(--border); }
+
+  .ops-dot-line {
+    width: 8px;
+    height: 1.5px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .ops-dot-line.done { background: var(--green); }
+
+  .ops-dot[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+    margin-bottom: 4px;
+    pointer-events: none;
+  }
+
   /* Action view wrapper */
   .action-view { display: flex; flex-direction: column; flex: 1; }
   .action-view.hidden { display: none; }
+
 
   /* Health view */
   .health-view { display: none; flex-direction: column; flex: 1; padding: 0 0 28px; }
@@ -1338,22 +1393,23 @@ const RFQS = [
   { id: "RFQ-4130", client: "Caspian Freight Co.", origin: "Istanbul", destination: "Houston", mode: "Air", shipments: 1, quotedValue: 7400, assignee: "James Chen", stage: "expired", stageDate: daysAgo(2), firstTime: true },
 
   // In Transit
-  { id: "RFQ-4050", client: "Global Freight Solutions", origin: "Yantian", destination: "Long Beach", mode: "FCL", shipments: 2, quotedValue: 22000, assignee: "David Park", stage: "transit", stageDate: daysFromNow(14), firstTime: false },
-  { id: "RFQ-4055", client: "Horizon Shipping Co.", origin: "Shanghai", destination: "Savannah", mode: "FCL", shipments: 1, quotedValue: 9800, assignee: "Maria Lopez", stage: "transit", stageDate: daysFromNow(8), firstTime: false },
-  { id: "RFQ-4060", client: "Eagle Express Freight", origin: "Hong Kong", destination: "JFK", mode: "Air", shipments: 1, quotedValue: 14200, assignee: "Lisa Wang", stage: "transit", stageDate: daysFromNow(2), firstTime: false },
-  { id: "RFQ-4065", client: "Nordic Supply Chain AB", origin: "Bremen", destination: "Baltimore", mode: "LCL", shipments: 3, quotedValue: 6500, assignee: "Sarah Kim", stage: "transit", stageDate: daysAgo(2), delayed: true, firstTime: false },
+  { id: "RFQ-4050", client: "Global Freight Solutions", origin: "Yantian", destination: "Long Beach", mode: "FCL", shipments: 2, quotedValue: 22000, assignee: "David Park", stage: "transit", stageDate: daysFromNow(14), firstTime: false, carrier: "Maersk", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "pending", opsDelivery: "pending", opsStage: "ops-transit", opsAssignee: "James Chen" },
+  { id: "RFQ-4055", client: "Horizon Shipping Co.", origin: "Shanghai", destination: "Savannah", mode: "FCL", shipments: 1, quotedValue: 9800, assignee: "Maria Lopez", stage: "transit", stageDate: daysFromNow(8), firstTime: false, carrier: "COSCO", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "pending", opsDelivery: "pending", opsStage: "ops-transit", opsAssignee: "James Chen" },
+  { id: "RFQ-4060", client: "Eagle Express Freight", origin: "Hong Kong", destination: "JFK", mode: "Air", shipments: 1, quotedValue: 14200, assignee: "Lisa Wang", stage: "transit", stageDate: daysFromNow(2), firstTime: false, carrier: "Cathay Cargo", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "in_progress", opsDelivery: "pending", opsStage: "ops-dest-cx", opsAssignee: "Maria Lopez" },
+  { id: "RFQ-4065", client: "Nordic Supply Chain AB", origin: "Bremen", destination: "Baltimore", mode: "LCL", shipments: 3, quotedValue: 6500, assignee: "Sarah Kim", stage: "transit", stageDate: daysAgo(2), delayed: true, firstTime: false, carrier: "Hapag-Lloyd", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "in_progress", opsDelivery: "pending", opsStage: "ops-dest-cx", opsAssignee: "Maria Lopez" },
 
   // Arriving Soon
-  { id: "RFQ-3990", client: "TransAtlantic Logistics", origin: "Ningbo", destination: "Los Angeles", mode: "FCL", shipments: 2, quotedValue: 19200, assignee: "James Chen", stage: "arriving", stageDate: daysFromNow(0), firstTime: false },
-  { id: "RFQ-3995", client: "Summit Intermodal", origin: "Busan", destination: "Tacoma", mode: "FCL", shipments: 1, quotedValue: 8600, assignee: "David Park", stage: "arriving", stageDate: daysFromNow(1), firstTime: false },
-  { id: "RFQ-4000", client: "Vertex Trading LLC", origin: "Chennai", destination: "Newark", mode: "Air", shipments: 1, quotedValue: 11800, assignee: "Maria Lopez", stage: "arriving", stageDate: daysFromNow(0), firstTime: true },
-  { id: "RFQ-4005", client: "Maple Leaf Imports", origin: "Xiamen", destination: "Vancouver", mode: "LCL", shipments: 2, quotedValue: 5400, assignee: "Lisa Wang", stage: "arriving", stageDate: daysAgo(1), delayed: true, firstTime: false },
+  { id: "RFQ-3990", client: "TransAtlantic Logistics", origin: "Ningbo", destination: "Los Angeles", mode: "FCL", shipments: 2, quotedValue: 19200, assignee: "James Chen", stage: "arriving", stageDate: daysFromNow(0), firstTime: false, carrier: "ONE", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "pending", opsStage: "ops-delivery", opsAssignee: "Maria Lopez" },
+  { id: "RFQ-3995", client: "Summit Intermodal", origin: "Busan", destination: "Tacoma", mode: "FCL", shipments: 1, quotedValue: 8600, assignee: "David Park", stage: "arriving", stageDate: daysFromNow(1), firstTime: false, carrier: "Evergreen", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "in_progress", opsDelivery: "pending", opsStage: "ops-dest-cx", opsAssignee: "Maria Lopez" },
+  { id: "RFQ-4000", client: "Vertex Trading LLC", origin: "Chennai", destination: "Newark", mode: "Air", shipments: 1, quotedValue: 11800, assignee: "Maria Lopez", stage: "arriving", stageDate: daysFromNow(0), firstTime: true, carrier: "Emirates SkyCargo", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "scheduled", opsStage: "ops-delivery", opsAssignee: "Maria Lopez" },
+  { id: "RFQ-4005", client: "Maple Leaf Imports", origin: "Xiamen", destination: "Vancouver", mode: "LCL", shipments: 2, quotedValue: 5400, assignee: "Lisa Wang", stage: "arriving", stageDate: daysAgo(1), delayed: true, firstTime: false, carrier: "Yang Ming", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "scheduled", opsStage: "ops-delivery", opsAssignee: "Maria Lopez" },
 
   // Pending Invoicing
-  { id: "RFQ-3900", client: "Silk Road Logistics", origin: "Qingdao", destination: "Houston", mode: "FCL", shipments: 1, quotedValue: 9100, assignee: "Sarah Kim", stage: "delivered", stageDate: daysAgo(3), firstTime: false },
-  { id: "RFQ-3910", client: "Global Freight Solutions", origin: "Shanghai", destination: "Los Angeles", mode: "FCL", shipments: 3, quotedValue: 31500, assignee: "James Chen", stage: "delivered", stageDate: daysAgo(7), firstTime: false },
-  { id: "RFQ-3920", client: "Pacific Cargo Lines", origin: "Kaohsiung", destination: "Oakland", mode: "LCL", shipments: 1, quotedValue: 3800, assignee: "David Park", stage: "delivered", stageDate: daysAgo(1), firstTime: false },
-  { id: "RFQ-3925", client: "Caspian Freight Co.", origin: "Mersin", destination: "Miami", mode: "FCL", shipments: 2, quotedValue: 16200, assignee: "Maria Lopez", stage: "delivered", stageDate: daysAgo(10), firstTime: true },
+  { id: "RFQ-3900", client: "Silk Road Logistics", origin: "Qingdao", destination: "Houston", mode: "FCL", shipments: 1, quotedValue: 9100, assignee: "Sarah Kim", stage: "delivered", stageDate: daysAgo(3), firstTime: false, carrier: "MSC", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "done", opsStage: null, opsAssignee: "Maria Lopez" },
+  { id: "RFQ-3910", client: "Global Freight Solutions", origin: "Shanghai", destination: "Los Angeles", mode: "FCL", shipments: 3, quotedValue: 31500, assignee: "James Chen", stage: "delivered", stageDate: daysAgo(7), firstTime: false, carrier: "Maersk", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "done", opsStage: null, opsAssignee: "James Chen" },
+  { id: "RFQ-3920", client: "Pacific Cargo Lines", origin: "Kaohsiung", destination: "Oakland", mode: "LCL", shipments: 1, quotedValue: 3800, assignee: "David Park", stage: "delivered", stageDate: daysAgo(1), firstTime: false, carrier: "Evergreen", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "done", opsStage: null, opsAssignee: "Maria Lopez" },
+  { id: "RFQ-3925", client: "Caspian Freight Co.", origin: "Mersin", destination: "Miami", mode: "FCL", shipments: 2, quotedValue: 16200, assignee: "Maria Lopez", stage: "delivered", stageDate: daysAgo(10), firstTime: true, carrier: "ZIM", opsBooking: "done", opsOriginCX: "done", opsPickup: "done", opsDestCX: "done", opsDelivery: "done", opsStage: null, opsAssignee: "James Chen" },
+
 ];
 
 function getStageDataDisplay(rfq) {
@@ -1450,6 +1506,34 @@ function transportIcon(mode) {
   return `<span class="transport-icon air" title="Air"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span>`;
 }
 
+function opsStatusClass(val) {
+  if (val === "done") return "done";
+  if (val === "in_progress" || val === "scheduled") return "in-progress";
+  if (val === "pending") return "pending";
+  return "pending";
+}
+
+function opsCheckmark(val) {
+  if (val === "done") return "&#10003;";
+  if (val === "in_progress" || val === "scheduled") return "&#9679;";
+  return "";
+}
+
+function buildOpsTracker(rfq) {
+  const stages = ["opsBooking","opsOriginCX","opsPickup","opsDestCX","opsDelivery"];
+  const labels = ["Booking","Origin CX","Pickup","Dest CX","Delivery"];
+  const hasOps = stages.some(s => rfq[s] && rfq[s] !== "pending");
+  if (!rfq.opsBooking) return "";
+
+  let html = '<div class="ops-tracker">';
+  stages.forEach((s, i) => {
+    if (i > 0) html += `<span class="ops-dot-line ${rfq[stages[i-1]] === 'done' ? 'done' : ''}"></span>`;
+    html += `<span class="ops-dot ${opsStatusClass(rfq[s])}" title="${labels[i]}: ${rfq[s] || 'N/A'}">${opsCheckmark(rfq[s])}</span>`;
+  });
+  html += '</div>';
+  return html;
+}
+
 function buildCardHTML(rfq) {
   const tm = getTeamMember(rfq.assignee);
   const initials = rfq.assignee.split(" ").map(w => w[0]).join("");
@@ -1483,7 +1567,7 @@ function buildCardHTML(rfq) {
         <span class="meta-chip ${modeClass(rfq.mode)}">${rfq.mode}</span>
         <span class="shipment-count">${shipLabel}</span>
       </div>
-      <div class="rfq-stage-data">${getStageDataDisplay(rfq)}</div>
+      <div class="rfq-stage-data">${getStageDataDisplay(rfq)}</div>${buildOpsTracker(rfq)}
       <div class="rfq-footer">
         <div class="rfq-assignee">
           <div class="avatar-xs" style="background:${tm.color}">${initials}</div>
